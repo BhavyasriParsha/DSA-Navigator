@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSA Roadmap – Complete Guide with Java</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #0f172a;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #334155;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, sans-serif; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--card);
+      padding: 1.2rem 6%;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header h1 { color: var(--primary); }
+
+    .hero {
+      padding: 4rem 6%;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2.6rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .hero p { max-width: 700px; margin: auto; }
+
+    .roadmap {
+      padding: 3rem 6%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .block {
+      background: var(--card);
+      padding: 1.8rem;
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .block h3 { color: var(--primary); }
+
+    .block ul {
+      padding-left: 1.2rem;
+    }
+
+    pre {
+      background: #020617;
+      color: #e5e7eb;
+      padding: 1rem;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+
+    footer {
+      background: var(--secondary);
+      color: #e2e8f0;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>DSA Master Roadmap</h1>
+</header>
+
+<section class="hero">
+  <h2>Complete Data Structures & Algorithms Roadmap</h2>
+  <p>
+    Structured like a software system: each block is a core DSA concept with optimized Java code
+    and a clear learning path from basics to advanced.
+  </p>
+</section>
+
+<section class="roadmap">
+
+  <!-- Arrays -->
+  <div class="block">
+    <h3>1. Arrays</h3>
+    <ul>
+      <li>Traversal, Prefix Sum</li>
+      <li>Two Pointer Technique</li>
+      <li>Sliding Window</li>
+    </ul>
+    <pre><code>// Max Subarray Sum (Kadane's Algorithm)
+int maxSubArray(int[] nums) {
+    int max = nums[0], curr = nums[0];
+    for (int i = 1; i < nums.length; i++) {
+        curr = Math.max(nums[i], curr + nums[i]);
+        max = Math.max(max, curr);
+    }
+    return max;
+}</code></pre>
+  </div>
+
+  <!-- Strings -->
+  <div class="block">
+    <h3>2. Strings</h3>
+    <ul>
+      <li>Frequency Counting</li>
+      <li>Pattern Matching</li>
+      <li>Palindromes</li>
+    </ul>
+    <pre><code>// Check Palindrome
+boolean isPalindrome(String s) {
+    int l = 0, r = s.length() - 1;
+    while (l < r) {
+        if (s.charAt(l++) != s.charAt(r--)) return false;
+    }
+    return true;
+}</code></pre>
+  </div>
+
+  <!-- Linked List -->
+  <div class="block">
+    <h3>3. Linked List</h3>
+    <ul>
+      <li>Reverse List</li>
+      <li>Fast & Slow Pointer</li>
+      <li>Cycle Detection</li>
+    </ul>
+    <pre><code>// Reverse Linked List
+ListNode reverse(ListNode head) {
+    ListNode prev = null;
+    while (head != null) {
+        ListNode next = head.next;
+        head.next = prev;
+        prev = head;
+        head = next;
+    }
+    return prev;
+}</code></pre>
+  </div>
+
+  <!-- Stack -->
+  <div class="block">
+    <h3>4. Stack</h3>
+    <ul>
+      <li>Monotonic Stack</li>
+      <li>Expression Evaluation</li>
+    </ul>
+    <pre><code>// Valid Parentheses
+boolean isValid(String s) {
+    Stack<Character> st = new Stack<>();
+    for (char c : s.toCharArray()) {
+        if (c == '(') st.push(')');
+        else if (st.isEmpty() || st.pop() != c) return false;
+    }
+    return st.isEmpty();
+}</code></pre>
+  </div>
+
+  <!-- Queue -->
+  <div class="block">
+    <h3>5. Queue & Deque</h3>
+    <ul>
+      <li>BFS</li>
+      <li>Sliding Window Maximum</li>
+    </ul>
+    <pre><code>// BFS using Queue
+void bfs(int start, List<List<Integer>> graph) {
+    boolean[] vis = new boolean[graph.size()];
+    Queue<Integer> q = new LinkedList<>();
+    q.add(start);
+    vis[start] = true;
+    while (!q.isEmpty()) {
+        int node = q.poll();
+        for (int nei : graph.get(node)) {
+            if (!vis[nei]) {
+                vis[nei] = true;
+                q.add(nei);
+            }
+        }
+    }
+}</code></pre>
+  </div>
+
+  <!-- Trees -->
+  <div class="block">
+    <h3>6. Trees</h3>
+    <ul>
+      <li>DFS, BFS</li>
+      <li>Height, Diameter</li>
+    </ul>
+    <pre><code>// Tree Height
+int height(TreeNode root) {
+    if (root == null) return 0;
+    return 1 + Math.max(height(root.left), height(root.right));
+}</code></pre>
+  </div>
+
+  <!-- BST -->
+  <div class="block">
+    <h3>7. Binary Search Tree</h3>
+    <ul>
+      <li>Insertion</li>
+      <li>Search</li>
+    </ul>
+    <pre><code>// Search in BST
+TreeNode searchBST(TreeNode root, int val) {
+    if (root == null || root.val == val) return root;
+    return val < root.val ? searchBST(root.left, val) : searchBST(root.right, val);
+}</code></pre>
+  </div>
+
+  <!-- Heaps -->
+  <div class="block">
+    <h3>8. Heaps</h3>
+    <ul>
+      <li>Priority Queue</li>
+      <li>Kth Largest Element</li>
+    </ul>
+    <pre><code>// Kth Largest
+int findKthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> pq = new PriorityQueue<>();
+    for (int n : nums) {
+        pq.add(n);
+        if (pq.size() > k) pq.poll();
+    }
+    return pq.peek();
+}</code></pre>
+  </div>
+
+  <!-- Graphs -->
+  <div class="block">
+    <h3>9. Graphs</h3>
+    <ul>
+      <li>BFS, DFS</li>
+      <li>Dijkstra</li>
+    </ul>
+    <pre><code>// Dijkstra
+int[] dijkstra(int V, List<List<int[]>> g, int src) {
+    int[] dist = new int[V];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    dist[src] = 0;
+    PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[1]));
+    pq.add(new int[]{src, 0});
+    while (!pq.isEmpty()) {
+        int[] cur = pq.poll();
+        for (int[] e : g.get(cur[0])) {
+            if (dist[e[0]] > cur[1] + e[1]) {
+                dist[e[0]] = cur[1] + e[1];
+                pq.add(new int[]{e[0], dist[e[0]]});
+            }
+        }
+    }
+    return dist;
+}</code></pre>
+  </div>
+
+  <!-- DP -->
+  <div class="block">
+    <h3>10. Dynamic Programming</h3>
+    <ul>
+      <li>Memoization</li>
+      <li>Tabulation</li>
+    </ul>
+    <pre><code>// Fibonacci (DP)
+int fib(int n) {
+    int[] dp = new int[n + 1];
+    dp[0] = 0; dp[1] = 1;
+    for (int i = 2; i <= n; i++)
+        dp[i] = dp[i - 1] + dp[i - 2];
+    return dp[n];
+}</code></pre>
+  </div>
+
+</section>
+
+<footer>
+  <p>DSA Roadmap • Optimized Java • Software Engineering Approach</p>
+</footer>
+
+</body>
+</html>
